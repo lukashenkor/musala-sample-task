@@ -1,0 +1,147 @@
+button {
+  cursor: pointer;
+}
+
+.App-header {
+  background-color: #282c34;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-header > nav {
+  width: 100%; 
+  background-color: #000;
+  min-height: 50px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.App-header > nav > a {
+  transition: color .2s;
+  margin: 0 10px;
+}
+
+.App-header > nav > a:hover {
+  color: #e0e0e0
+}
+
+.App-header > nav > a.active {
+  color: #d6d6d6
+}
+
+.App-header > nav > a.active,
+.App-header > nav > a:hover,
+.goto-link:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 100%;
+  margin: 10px 20px;
+}
+
+.list-header {
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.list-header > h1 {
+  text-align: center;
+  width: 100%;
+  margin-top: 0;
+}
+
+.list-header > button {
+  height: 50px;
+  width: 220px;
+}
+
+.list-body {
+  display: grid;
+  grid-gap: 40px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr) );
+}
+
+.list-item {
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 0 5px;
+  min-height: 160px;
+  transition: all .2s;
+  box-shadow: 0 0 0 0;
+  background-color: #fbfbfb;
+  word-break: break-all;
+}
+
+.list-item:hover {
+  transform: scale(1.05);
+  box-shadow: 1px 4px 6px -3px;
+}
+
+.item-details > h1 {
+  text-align: center;
+}
+
+.item-details-header > button {
+  margin-right: 10px;
+}
+
+.gateway-devices-list .goto-link {
+  display: block;
+  width: max-content;
+  margin-bottom: 5px;
+}
+
+.goto-link {
+  position: relative;
+}
+
+.goto-link__arrow {
+  position: absolute;
+  right: -30px;
+  top: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  filter: contrast(60%);
+}
+
+.create-item-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-item-input {
+  width: 250px;
+}
+
+.create-item-dialog-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field > p {
+  font-size: 12px;
+  color: #f00;
+  margin: 0;
+}
+
+.dialog-content > * {
+  margin-bottom: 20px;
+}
