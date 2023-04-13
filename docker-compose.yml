@@ -4,9 +4,10 @@ version: "3.8"
 # services : is a list of our container
 services:
   # name is optional for our mongodb
-  mymongodb:
+  mymongodatabase:
     # since mongo is an offical image we can use it.
     image: "mongo"
+    restart: always
 
     # the port that we want to publish for mongodb
     ports:
@@ -29,7 +30,7 @@ services:
 
     # depends_on means it will start our backend container once mongo-container is  up and running.
     depends_on:
-      - mymongodb
+      - mymongodatabase
 
   # name is optional for our frontend
   frontend:

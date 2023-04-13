@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react';
 import Gateway from '../components/Gateway';
 import {
   Box,
@@ -41,18 +41,18 @@ const newItemFields = {
 };
 
 function GatewayList() {
+  const [dialog, setDialog] = useState(false);
+  const [newItemObject, setNewItemObject] = useState({devices: []});
+
   const {
     data: gateways,
     isLoading: gatewaysLoading,
     error: gatewaysError,
   } = appAPI.useFetchAllGatewaysQuery();
-
   const devices = useSelector(state => state.devices.data);
 
   const [createGateway] = appAPI.useCreateNewGatewayMutation();
 
-  const [dialog, setDialog] = useState(false);
-  const [newItemObject, setNewItemObject] = useState({devices: []});
 
   function fieldOnChangeHandler(e) {
     setNewItemObject((prev) => ({ ...prev, [e.target.name]: e.target.value }));

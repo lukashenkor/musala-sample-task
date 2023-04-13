@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
-import { setError } from "./apiHandlers";
+
 
 export const appAPI = createApi({
   reducerPath: "appAPI",
@@ -33,22 +33,6 @@ export const appAPI = createApi({
         body: gateway,
       }),
       invalidatesTags: ["Device", "Gateway"],
-    }),
-    updateDevice: build.mutation({
-      query: (device) => ({
-        url: `/devices/${device["_id"]}`,
-        method: "PATCH",
-        body: device,
-      }),
-      invalidatesTags: ["Device", "Gateway"],
-    }),
-    updateGateway: build.mutation({
-      query: (gateway) => ({
-        url: `/gateways/${gateway["_id"]}`,
-        method: "PATCH",
-        body: gateway,
-      }),
-      invalidatesTags: ["Gateway"],
     }),
     addDeviceToGateway: build.mutation({
       query: ({gatewayId, deviceId}) => ({

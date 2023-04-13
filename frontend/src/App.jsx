@@ -1,5 +1,5 @@
 import "./App.css";
-import { NavLink, Route, Routes } from "react-router-dom";
+import { NavLink, Route, Routes, Navigate } from "react-router-dom";
 import DeviceDetails from "./pages/DeviceDetails";
 import GatewayDetails from "./pages/GatewayDetails";
 import GatewayList from "./pages/GatewayList";
@@ -15,17 +15,8 @@ function App() {
     (state) => state.requestStatus
   );
 
-  const {
-    data: gateways,
-    isLoading: gatewaysLoading,
-    error: gatewaysError,
-  } = appAPI.useFetchAllGatewaysQuery();
-
-  const {
-    data: devices,
-    isLoading: devicesLoading,
-    error: devicesError,
-  } = appAPI.useFetchAllDevicesQuery();
+  appAPI.useFetchAllGatewaysQuery();
+  appAPI.useFetchAllDevicesQuery();
 
   function snackbarHandleClose() {
     dispatch(clearMessage());
@@ -41,10 +32,14 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/gateways" exact element={<GatewayList />} />
-          <Route path="/gateways/:id" element={<GatewayDetails />} />
+          <Route path="/gateways" element={<GatewayList />} />
+          <Route path="/gateways/:id" exact element={<GatewayDetails />} />
           <Route path="/devices" exact element={<DeviceList />} />
-          <Route path="/devices/:id" element={<DeviceDetails />} />
+          <Route path="/devices/:id" exact element={<DeviceDetails />} />
+          <Route
+            path="/"
+            element={<Navigate to="/gateways" replace />}
+          />
         </Routes>
       </main>
       {requestMessage && <Snackbar

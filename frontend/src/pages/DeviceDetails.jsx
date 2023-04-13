@@ -20,10 +20,9 @@ function DeviceDetails() {
   const {
     data: devices,
     isLoading: devicesLoading,
-    error: devicesError,
   } = appAPI.useFetchAllDevicesQuery();
 
-  const [deleteDevice, {}] = appAPI.useDeleteDeviceMutation();
+  const [deleteDevice] = appAPI.useDeleteDeviceMutation();
 
   const device = devices?.find((item) => item._id === id);
 
@@ -59,7 +58,10 @@ function DeviceDetails() {
         {device.gateway && (
           <div>
             Gateway:{" "}
-            <NavLink to={`/gateways/${device.gateway["_id"]}`} className="goto-link">
+            <NavLink
+              to={`/gateways/${device.gateway["_id"]}`}
+              className="goto-link"
+            >
               {device.gateway.name}
               <img
                 className="goto-link__arrow"

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import {
   Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   Select,
   MenuItem,
   InputLabel,
   FormControl,
+  LinearProgress,
 } from "@mui/material";
 import InputComponent from "../components/InputComponent";
 import { appAPI } from "../services/AppService";
@@ -33,7 +31,6 @@ const newItemFields = {
 };
 
 function DeviceList() {
-  // const dispatch = useDispatch();
   const {
     data: devices,
     isLoading: devicesLoading,
@@ -72,7 +69,10 @@ function DeviceList() {
   }
 
   if (devicesLoading) {
-    return <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+    return <>
+      <LinearProgress />
+      <h1 style={{ textAlign: "center" }}>Loading...</h1>;
+    </>
   }
 
   return (

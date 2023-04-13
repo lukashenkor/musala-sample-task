@@ -40,16 +40,6 @@ router.post("/", async (req, res) => {
     });
   }
 
-  /* let devices;
-  try {
-    devices = await PeripheralDevice.find({
-      "_id": {$in: devicesId}
-    });
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-  devices. */
-
   const gateway = new Gateway({
     serialNumber,
     name,
@@ -67,21 +57,6 @@ router.post("/", async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
   return res.status(201).json({ message: "Gateway is created", data: gateway });
-});
-
-// Update gateway
-router.patch("/:id", getGateway, async (req, res) => {
-  const { name } = req.body;
-
-  if (name !== undefined) {
-    res[field].name = name;
-  }
-  try {
-    await res[field].save();
-  } catch (error) {
-    return res.status(500).json({ message: error.message });
-  }
-  return res.json({ message: "Gateway is updated", data: res[field]});
 });
 
 router.patch("/:id/addDevice", getGateway, async (req, res) => {

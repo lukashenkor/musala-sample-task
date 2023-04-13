@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import InputComponent from '../components/InputComponent';
 import { appAPI } from "../services/AppService";
 import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  FormControl,
+  Button, DialogContentText, FormControl,
   InputLabel,
   MenuItem,
-  Select,
+  Select
 } from "@mui/material";
 import ActionDialog from "../components/ActionDialog";
 import { useSelector } from "react-redux";
@@ -20,25 +13,25 @@ import { useSelector } from "react-redux";
 const redirectArrow = require("../assets/icons/redirect-arrow.svg").default;
 
 function GatewayDetails() {
-  const [dialog, setDialog] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [dialog, setDialog] = useState(false);
+  const [dialogMode, setDialogMode] = useState(null);
+  const [connectingDevice, setConnectingDevice] = useState('');
+
   const {
     data: gateways,
     isLoading: gatewaysLoading,
     error: gatewaysError,
   } = appAPI.useFetchAllGatewaysQuery();
   const gateway = gateways?.find((item) => item._id === id);
-
   const devices = useSelector(state => state.devices.data);
   
   const [deleteGateway] = appAPI.useDeleteGatewayMutation();
   const [addDevice] = appAPI.useAddDeviceToGatewayMutation();
+  
 
-  const [dialogMode, setDialogMode] = useState(null);
-  const [updatedItem, setUpdateItem] = useState(null);
-
-  const [connectingDevice, setConnectingDevice] = useState('');
 
   async function submitHandler(e) {
     e.preventDefault();
@@ -63,9 +56,6 @@ function GatewayDetails() {
   }
 
   function handleOpenDialogClick(mode) {
-    if (mode === "update") {
-      setUpdateItem(gateway);
-    }
     setDialogMode(mode);
     setDialog(true);
   }
